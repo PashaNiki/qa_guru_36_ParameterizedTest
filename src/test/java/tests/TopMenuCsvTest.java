@@ -10,13 +10,13 @@ public class TopMenuCsvTest extends TestBase {
 
     MtsMainPage mainPage = new MtsMainPage();
 
-    @ParameterizedTest(name = "По клику на «{0}» должен открыться заголовок «{1}»")
-    @CsvSource({
-            "Кредит, Кредиты",
+    @ParameterizedTest(name = "По клику на \"{0}\" должен открыться заголовок \"{1}\"")
+    @CsvSource(value = {
+            "Кредиты, Кредиты",
             "Карты, Банковские карты",
-            "Вклады, Вклады и счета"
+            "Вклады и счета, Вклады и счета"
     })
-    void topMenuTest(String menuItem, String expectedHeader) {
+    void topMenuShouldOpenCorrectHeader(String menuItem, String expectedHeader) {
         mainPage.openPage();
         mainPage.clickTopMenuItem(menuItem);
         mainPage.checkHeader(expectedHeader);

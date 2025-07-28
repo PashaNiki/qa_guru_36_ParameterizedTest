@@ -5,19 +5,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import pages.MtsMainPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$$;
-
 @Tag("regression")
 public class TopMenuValueSourceTest extends TestBase {
 
     MtsMainPage mainPage = new MtsMainPage();
 
     @ParameterizedTest(name = "Меню содержит пункт: {0}")
-    @ValueSource(strings = {"Кредит", "Карты", "Вклады"})
+    @ValueSource(strings = {"Кредиты", "Карты", "Вклады и счета"})
     void menuItemPresenceTest(String menuItem) {
         mainPage.openPage();
-        $$(".header__main-nav a").findBy(text(menuItem)).shouldBe(visible);
+        mainPage.checkMenuItemVisible(menuItem);
     }
 }
